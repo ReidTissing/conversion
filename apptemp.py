@@ -34,7 +34,6 @@ def weightconvert():
     addedthem = (mtdew * 12) / beans
     print(addedthem)
 
-
 def animalweight():
     df = pd.read_csv("D:\\App\\converter\\animals.csv")
     # countit = df.shape[0]
@@ -62,22 +61,6 @@ def animal():
 # animal()
 
 
-def animalobjects():
-    df = pd.read_csv("D:\\App\\converter\\weights.csv")
-    objects = df.shape[0]
-    # print("deathcount: " + str(deathcount))
-    randobject = random.randint(1,objects-1)
-    objectname = df['Object'][randobject]
-    objectweight = df['Weight(lbs)'][randobject]
-    animal = animalweight()
-    animalpounds = animal[1]
-    animalname = pluralize(animal[0])
-    if objectweight > animalpounds:
-        comparison = round(objectweight / animalpounds,2)
-        print("You could mold " + str(comparison) + " " + animalname + " in to one " + objectname)
-        
-animalobjects()
-
 def tragedycount():
     df = pd.read_csv("D:\\App\\converter\\disasters.csv")
     deathcount = df.shape[0]
@@ -86,7 +69,7 @@ def tragedycount():
     # print("random: " + str(randtragic))
     description = df['Description'][randtragic]
     deathtoll = df['People'][randtragic]
-    return [description, deathtoll]
+    return [deathtoll, description]
 def tragedy():
     wreck1 = tragedycount()
     wreck2 = tragedycount()
@@ -116,22 +99,10 @@ def animalhumans():
 def animaltragedy():
     humanweight = 137
     animal = animalweight()
-    animalname = pluralize(animal[0])
+    pluralize(animal[0])
     badevent = tragedycount()
-    if animal[1] < 137:
-        animorph = 137 / animal[1]
-
-        print("A human weighs as much as  " + str(animorph) + " " + animalname + ".")    
-        deadanimals = badevent[1]*animorph
-        print("if " + str(round(animorph,0)) + " " + animalname + " put on a trench coat to look like and weigh the same as a human, " + str(round(deadanimals,0)) + " " + animalname + " would have " + badevent[0] + ".")
-        print("If humans were made purely of " + animalname + ", " + str(deadanimals) + " would have " + badevent[0] + ".")
-    else:
-        animorph = animal[1] / 137
-        print(animalname + " weigh as much as " + str(animorph) + " human.")
-        # deadanimals = badevent[1]*animorph
-        
-    # print("event deaths: " + str(badevent[1]))
-    # print("animal weight: " + str(animal[1]))
+    if badevent[1] > animal[1]:
+        print(badevent[1])
 
 
 animaltragedy()
