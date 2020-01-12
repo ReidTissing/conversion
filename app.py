@@ -15,7 +15,7 @@ from currency import exchange
 import pandas as pd
 from measurement.measures import Weight, Volume
 import inflect
-
+from humanize import humanize
 def pluralize(noun):
     p = inflect.engine()
     seperatename = noun.split()
@@ -133,8 +133,23 @@ def animaltragedy():
     # print("event deaths: " + str(badevent[1]))
     # print("animal weight: " + str(animal[1]))
 
+def bonecount():
+    df = pd.read_csv("D:\\App\\converter\\humanbones.csv")
+    bones = df.shape[0]
+    randbone = random.randint(1,bones-1)
+    description = df['Bone'][randbone]
+    bonecount = df['Amount'][randbone]
+    return [description, bonecount]
 
-animaltragedy()
+
+def bonetragedy():
+    randbone = bonecount()
+    randtragedy = tragedycount()
+    totalbones = randbone[1] * randtragedy[1]
+    totalbones = humanize(totalbones)
+    print("The number of " + randbone[0] + " bones of people who " + randtragedy[0] + " is " + str(totalbones))
+bonetragedy()
+# animaltragedy()
 
 
 #notes
